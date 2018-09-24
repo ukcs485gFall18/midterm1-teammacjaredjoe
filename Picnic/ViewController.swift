@@ -3,6 +3,10 @@ import UIKit
 
 public class ViewController: UIViewController {
     
+    @IBOutlet weak var Joe: UIButton!
+    
+    @IBOutlet weak var Jared: UIButton!
+    
     @IBOutlet weak var bug: UIImageView!
     
     @IBOutlet weak var basketTop: UIImageView!
@@ -30,7 +34,6 @@ public class ViewController: UIViewController {
     public override func viewDidAppear(_ animated: Bool) {
         self.openBasket()
         self.openNapkins()
-        self.moveBugLeft()
     }
     
     public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -57,40 +60,131 @@ public class ViewController: UIViewController {
         }, completion: nil)
     }
     
-    private func faceBugLeft() {
-        guard !self.bugIsDead else { return }
-        UIView.animate(withDuration: 1.0, delay: 0.0, options: [.curveEaseInOut , .allowUserInteraction], animations: {
-            self.bug.transform = CGAffineTransform(rotationAngle: 0.0)
-        }, completion: { didFinish in
-            self.moveBugLeft()
+    @IBAction func JoeTapped(_sender: Any) {
+        if Joe.state == .highlighted {
+            Joe.isSelected = true
+            moveBugToJoe1()
+        }
+        else {
+            Joe.isSelected = false
+        }
+    }
+    
+    @IBAction func JaredTapped(_sender: Any) {
+        if Jared.state == .highlighted {
+            Jared.isSelected = true
+            moveBugToJared1()
+        }
+        else {
+            Jared.isSelected = false
+        }
+    }
+    
+    func moveBugToJoe1() {
+        UIView.animate(withDuration: 1.0,
+                       delay: 2.0,
+                       options: [.curveEaseInOut , .allowUserInteraction],
+                       animations: {
+                        self.bug.center = CGPoint(x: 75, y: 200)
+        },
+                       completion: { finished in
+                        print("Zig")
+                        self.moveBugToJoe2()
         })
     }
     
-    private func moveBugLeft() {
-        guard !self.bugIsDead else { return }
-        UIView.animate(withDuration: 1.0, delay: 0.5, options: [.curveEaseInOut , .allowUserInteraction], animations: {
-            self.bug.center = CGPoint(x: 75, y: 200)
-        }, completion: { didFinish in
-            self.faceBugRight()
+    func moveBugToJoe2() {
+        UIView.animate(withDuration: 1.0,
+                       delay: 0.0,
+                       options: [.curveEaseInOut , .allowUserInteraction],
+                       animations: {
+                        self.bug.transform = CGAffineTransform(rotationAngle: 700.0)
+        },
+                       completion: { finished in
+                        print("Turn Right")
+                        self.moveBugToJoe3()
         })
     }
     
-    private func faceBugRight() {
-        guard !self.bugIsDead else { return }
-        UIView.animate(withDuration: 1.0, delay: 0.0, options: [.curveEaseInOut , .allowUserInteraction], animations: {
-            self.bug.transform = CGAffineTransform(rotationAngle: .pi)
-        }, completion: { didFinish in
-            self.moveBugRight()
+    func moveBugToJoe3() {
+        UIView.animate(withDuration: 1.0,
+                       delay: 2.0,
+                       options: [.curveEaseInOut , .allowUserInteraction],
+                       animations: {
+                        self.bug.center = CGPoint(x: self.view.frame.width - 75, y: 150)
+        },
+                       completion: { finished in
+                        print("Zag")
+                        self.moveBugToJoe4()
         })
     }
     
-    private func moveBugRight() {
-        guard !self.bugIsDead else { return }
-        UIView.animate(withDuration: 1.0, delay: 0.5, options: [.curveEaseInOut , .allowUserInteraction], animations: {
-            self.bug.center = CGPoint(x: self.view.frame.width - 75, y: 250)
-        }, completion: { didFinish in
-            self.faceBugLeft()
+    func moveBugToJoe4() {
+        UIView.animate(withDuration: 1.0,
+                       delay: 0.0,
+                       options: [.curveEaseInOut , .allowUserInteraction],
+                       animations: {
+                        self.bug.transform = CGAffineTransform(rotationAngle: -75.0)
+        },
+                       completion: { finished in
+                        print("Turn Left")
+                        self.moveBugToJoe5()
         })
+    }
+    
+    func moveBugToJoe5() {
+        UIView.animate(withDuration: 1.0,
+                       delay: 2.0,
+                       options: [.curveEaseInOut , .allowUserInteraction],
+                       animations: {
+                        self.bug.center = CGPoint(x: self.view.frame.width - 175, y: 75)
+        },
+                       completion: { finished in
+                        print("Zig")
+                        self.moveBugToJoe6()
+        })
+    }
+    
+    func moveBugToJoe6() {
+        UIView.animate(withDuration: 1.0,
+                       delay: 0.0,
+                       options: [.curveEaseInOut , .allowUserInteraction],
+                       animations: {
+                        self.bug.transform = CGAffineTransform(rotationAngle: 450.0)
+        },
+                       completion: { finished in
+                        print("Turn Right")
+                        self.moveBugBackHome1()
+        })
+    }
+    
+    func moveBugBackHome1() {
+        UIView.animate(withDuration: 1.0,
+                       delay: 2.0,
+                       options: [.curveEaseInOut , .allowUserInteraction],
+                       animations: {
+                        self.bug.center = CGPoint(x: self.view.frame.width - 75, y: 250)
+        },
+                       completion: { finished in
+                        print("Back Home")
+                        self.moveBugBackHome2()
+        })
+    }
+    
+    func moveBugBackHome2() {
+        UIView.animate(withDuration: 1.0,
+                       delay: 0.0,
+                       options: [.curveEaseInOut , .allowUserInteraction],
+                       animations: {
+                        self.bug.transform = CGAffineTransform(rotationAngle: 0.0)
+        },
+                       completion: { finished in
+                        print("Turn Left")
+        })
+    }
+    
+    func moveBugToJared1() {
+        print("working")
     }
     
     private func squishBug() {
