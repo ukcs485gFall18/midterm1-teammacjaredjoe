@@ -31,7 +31,7 @@ public class ViewController: UIViewController {
         self.audioPlayer = try! AVAudioPlayer(contentsOf: url)
         self.audioPlayer.prepareToPlay()
         
-        //Joe Clements (let UpSwipe, downSwipe to end of viewDidLoad
+        //Joe Clements (let UpSwipe, downSwipe to end of viewDidLoad()
         let upSwipe = UISwipeGestureRecognizer(target: self, action: #selector(ViewController.handleSwipes(_:)))
     
         let downSwipe = UISwipeGestureRecognizer(target: self, action: #selector(ViewController.handleSwipes(_:)))
@@ -44,7 +44,7 @@ public class ViewController: UIViewController {
     }
     
     public override func viewDidAppear(_ animated: Bool) {
-        //self.openBasket()
+        self.openBasket()
         self.openNapkins()
 
     }
