@@ -21,6 +21,7 @@ public class ViewController: UIViewController {
     
     @IBOutlet weak var basketBottomConstraint : NSLayoutConstraint!
     
+    
     private var bugIsDead: Bool = false
     
     private var audioPlayer: AVAudioPlayer!
@@ -29,11 +30,23 @@ public class ViewController: UIViewController {
         let url = Bundle.main.url(forResource: "squish", withExtension: "caf")!
         self.audioPlayer = try! AVAudioPlayer(contentsOf: url)
         self.audioPlayer.prepareToPlay()
+        
+        //Joe Clements (let UpSwipe, downSwipe to end of viewDidLoad
+        let upSwipe = UISwipeGestureRecognizer(target: self, action: #selector(ViewController.handleSwipes(_:)))
+    
+        let downSwipe = UISwipeGestureRecognizer(target: self, action: #selector(ViewController.handleSwipes(_:)))
+        
+        upSwipe.direction = .up
+        downSwipe.direction = .down
+    
+        view.addGestureRecognizer(upSwipe)
+        view.addGestureRecognizer(downSwipe)
     }
     
     public override func viewDidAppear(_ animated: Bool) {
-        self.openBasket()
+        //self.openBasket()
         self.openNapkins()
+
     }
     
     public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -44,7 +57,7 @@ public class ViewController: UIViewController {
             self.squishBug()
         }
     }
-    
+
     private func openBasket() {
         self.basketTopConstraint.constant -= self.basketTop.frame.size.height
         self.basketBottomConstraint.constant -= self.basketBottom.frame.size.height
@@ -58,6 +71,25 @@ public class ViewController: UIViewController {
             self.fabricTop.frame.origin.y -= self.fabricTop.frame.size.height
             self.fabricBottom.frame.origin.y += self.fabricBottom.frame.size.height
         }, completion: nil)
+    }
+    
+    //The following code was added by Joe Clements (handleSwipes)
+    func handleSwipes(sender:UISwipeGestureRecognizer) {
+        if (sender.direction == .up) {
+            print ("Swipe Up")
+            UIView.animate(withDuration: 1.0, delay: 1.2, options: .curveEaseOut, animations: {
+                self.basketTop.frame.origin.y -= self.basketTop.frame.size.height
+                self.basketBottom.frame.origin.y += self.basketBottom.frame.size.height
+            }, completion: nil)
+        }
+        else if (sender.direction == .down) {
+            print ("Swipe Down")
+            UIView.animate(withDuration: 1.0, delay: 1.2, options: .curveEaseOut, animations: {
+                self.basketTop.frame.origin.y -= self.basketTop.frame.size.height
+                self.basketBottom.frame.origin.y += self.basketBottom.frame.size.height
+            }, completion: nil)
+        }
+        else {return}
     }
     
     @IBAction func JoeTapped(_sender: Any) {
