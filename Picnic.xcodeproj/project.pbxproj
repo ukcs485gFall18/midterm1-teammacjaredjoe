@@ -16,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7F8D29D521640A38006F4454 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		8EFF27401A3DA28C00FAFE70 /* Picnic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Picnic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EFF27441A3DA28C00FAFE70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8EFF27451A3DA28C00FAFE70 /* AppDelegate.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; tabWidth = 4; };
@@ -40,6 +41,7 @@
 		8EFF27371A3DA28C00FAFE70 = {
 			isa = PBXGroup;
 			children = (
+				7F8D29D521640A38006F4454 /* README.md */,
 				8EFF27421A3DA28C00FAFE70 /* Picnic */,
 				8EFF27411A3DA28C00FAFE70 /* Products */,
 			);
